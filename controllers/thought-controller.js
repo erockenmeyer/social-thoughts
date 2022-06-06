@@ -75,8 +75,8 @@ const thoughtController = {
             });
     },
 
-    // reply to a thought
-    addReply({ params, body }, res) {
+    // reaction to a thought
+    addReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $push: { replies: body } },
@@ -125,11 +125,11 @@ const thoughtController = {
             });
     },
 
-    // delete a reply
-    deleteReply({ params }, res) {
+    // delete a reaction
+    deleteReaction({ params }, res) {
         Thought.findOneAndDelete(
             { _id: params.thoughtId },
-            { $pull: { replies: { replyId: params.replyId } } },
+            { $pull: { replies: { reactionId: params.reactionId } } },
             { new: true }
         )
             .then(dbThoughtData => {
@@ -146,3 +146,5 @@ const thoughtController = {
             });
     }
 }
+
+module.exports = thoughtController;
