@@ -31,19 +31,19 @@ const thoughtController = {
     },
 
     // create a new thought
-    createThought({ params, body }, res) {
+    createThought({ body }, res) {
         Thought.create(body)
             .then(({ _id }) => {
                 return User.findOneAndUpdate(
-                    { _id: params.userId },
-                    { $push: { thought: _id } },
+                    { _id: body.userId },
+                    { $push: { thoughts: _id } },
                     { new: true }
                 );
             })
             .then(dbUserData => {
                 // if no data, 404
                 if (!dbUserData) {
-                    res.status(404).json({ message: 'No thought with that id!' });
+                    res.status(404).json({ message: 'No user with that id!' });
                     return;
                 }
                 res.json(dbUserData);
@@ -107,7 +107,7 @@ const thoughtController = {
                 }
                 return User.findOneAndUpdate(
                     { _id: params.userId },
-                    { $pull: { thoughts: params.thoughtID } },
+                    { $pull: { thoughts: params.thoughtId } },
                     { new: true }
                 );
             })
