@@ -17,7 +17,7 @@ Download, then from the folder in the command line, run npm install.
 As the back end of a social network.
 
 ## Walkthrough
-[See this video.]()
+[See this video.](https://drive.google.com/file/d/1bteEZH-iYtiqMqLVeuTe_AoafdlzrcjP/view)
 
 ## Contributing
 Erik Rockenmeyer
